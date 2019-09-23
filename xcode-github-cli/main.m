@@ -35,8 +35,7 @@ int main(int argc, char*const argv[]) {
     int returnCode = EXIT_FAILURE;
     BOOL repeatForever = NO;
 
-start:
-    @autoreleasepool {
+    do { @autoreleasepool {
         BNCLogSetOutputFunction(LogOutputFunction);
         BNCLogSetDisplayLevel(BNCLogLevelWarning);
 
@@ -52,7 +51,8 @@ start:
             returnCode = EXIT_SUCCESS;
             goto exit;
         }
-        global_logLevel = MIN(MAX(BNCLogLevelWarning - options.verbosity, BNCLogLevelAll), BNCLogLevelNone);
+        global_logLevel =
+            MIN(MAX(BNCLogLevelWarning - options.verbosity, BNCLogLevelAll), BNCLogLevelNone);
         BNCLogSetDisplayLevel(global_logLevel);
         
         if (options.showVersion) {
@@ -80,12 +80,9 @@ start:
         if (error == nil) returnCode = EXIT_SUCCESS;
 
         repeatForever = options.repeatForever;
-    }
-
-    if (repeatForever) {
-        sleep(60);
-        goto start;
-    }
+        if (repeatForever) sleep(60);
+    }}
+    while (repeatForever);
 
 exit:
     BNCLogFlushMessages();
