@@ -18,9 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy)   NSString*_Nullable xcodeServerPassword;  // Optional
 @property (copy)   NSString*_Nullable templateBotName;
 @property (copy)   NSString*_Nullable githubAuthToken;
-@property (copy)   NSString*_Nullable successfulBuildMessage;
-@property (copy)   NSString*_Nullable failedBuildMessage;
-@property (copy)   NSString*_Nullable perfectBuildMessage;
+@property (copy)   NSString*_Nullable successfulBuildMessage; // Optional
+@property (copy)   NSString*_Nullable failedBuildMessage;  // Optional
+@property (copy)   NSString*_Nullable perfectBuildMessage;  // Optional
 @property (assign) int  verbosity;
 @property (assign) BOOL dryRun;
 @property (assign) BOOL showStatusOnly;

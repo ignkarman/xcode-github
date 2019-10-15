@@ -132,113 +132,112 @@ _Result_: **Perfect build**! 👍
 _Test Coverage_: 65% (193 tests).
 */
 
-- (APFormattedString*) formattedDetailString {
-    
+- (APFormattedString*) formatDetailString:(NSString*_Nullable)successMessage :(NSString*_Nullable) failureMessage :(NSString*_Nullable)perfectMessage {
     NSTimeInterval duration = [self.endedDate timeIntervalSinceDate:self.startedDate];
-    NSString*durationString = XGDurationStringFromTimeInterval(duration);
+       NSString*durationString = XGDurationStringFromTimeInterval(duration);
 
-    APFormattedString *apstring =
-        [[[[APFormattedString
-            plainText:@"Result of Integration %@", self.integrationNumber]
-            line]
-            italicText:@"Duration"]
-            plainText:@": %@\n", durationString];
+       APFormattedString *apstring =
+           [[[[APFormattedString
+               plainText:@"Result of Integration %@", self.integrationNumber]
+               line]
+               italicText:@"Duration"]
+               plainText:@": %@\n", durationString];
 
-    if ([self.result isEqualToString:@"canceled"]) {
-        [[[apstring
-            plainText:@"Build was "]
-            boldText:@"**manually canceled**"]
-            plainText:@"."];
-        return apstring;
-    }
-    
-    [[apstring
-        italicText:@"Result"]
-        plainText:@": "];
+       if ([self.result isEqualToString:@"canceled"]) {
+           [[[apstring
+               plainText:@"Build was "]
+               boldText:@"**manually canceled**"]
+               plainText:@"."];
+           return apstring;
+       }
+       
+       [[apstring
+           italicText:@"Result"]
+           plainText:@": "];
 
-    if ([self.errorCount integerValue] > 0) {
-        [apstring boldText:@"%@ errors, failing state: %@", self.errorCount, self.summaryString];
-        return apstring;
-    }
+       if ([self.errorCount integerValue] > 0) {
+           [apstring boldText:@"%@ errors, failing state: %@", self.errorCount, self.summaryString];
+           return apstring;
+       }
 
-    if ([self.testFailureCount integerValue] > 0) {
-        [[apstring boldText:@"Build failed %@ tests", self.testFailureCount]
-            plainText:@" out of %@", self.testsCount];
-        return apstring;
-    }
+       if ([self.testFailureCount integerValue] > 0) {
+           [[apstring boldText:@"Build failed %@ tests", self.testFailureCount]
+               plainText:@" out of %@", self.testsCount];
+           return apstring;
+       }
 
-    if ([self.testsCount integerValue] > 0 &&
-        [self.warningCount integerValue] > 0 &&
-        [self.analyzerWarningCount integerValue] > 0) {
-        [[[[[apstring
-            plainText:@"All %@ tests passed, but please ", self.testsCount]
-            boldText:@"fix %@ warnings", self.warningCount]
-            plainText:@" and "]
-            boldText:@"%@ analyzer warnings", self.analyzerWarningCount]
-            plainText:@"."];
-        if ([self.codeCoveragePercentage doubleValue] > 0) {
-            [[apstring
-                italicText:@"\nTest Coverage"]
-                plainText:@": %@%%", self.codeCoveragePercentage];
-        }
-        return apstring;
-    }
+       if ([self.testsCount integerValue] > 0 &&
+           [self.warningCount integerValue] > 0 &&
+           [self.analyzerWarningCount integerValue] > 0) {
+           [[[[[apstring
+               plainText:@"All %@ tests passed, but please ", self.testsCount]
+               boldText:@"fix %@ warnings", self.warningCount]
+               plainText:@" and "]
+               boldText:@"%@ analyzer warnings", self.analyzerWarningCount]
+               plainText:@"."];
+           if ([self.codeCoveragePercentage doubleValue] > 0) {
+               [[apstring
+                   italicText:@"\nTest Coverage"]
+                   plainText:@": %@%%", self.codeCoveragePercentage];
+           }
+           return apstring;
+       }
 
-    if ([self.testsCount integerValue] > 0 &&
-        [self.warningCount integerValue] > 0) {
-        [[apstring
-            plainText:@"All %@ tests passed, but please ", self.testsCount]
-            boldText:@"fix %@ warnings.", self.warningCount];
-        if ([self.codeCoveragePercentage doubleValue] > 0) {
-            [[apstring
-                italicText:@"\nTest Coverage"]
-                plainText:@": %@%%", self.codeCoveragePercentage];
-        }
-        return apstring;
-    }
+       if ([self.testsCount integerValue] > 0 &&
+           [self.warningCount integerValue] > 0) {
+           [[apstring
+               plainText:@"All %@ tests passed, but please ", self.testsCount]
+               boldText:@"fix %@ warnings.", self.warningCount];
+           if ([self.codeCoveragePercentage doubleValue] > 0) {
+               [[apstring
+                   italicText:@"\nTest Coverage"]
+                   plainText:@": %@%%", self.codeCoveragePercentage];
+           }
+           return apstring;
+       }
 
-    if ([self.testsCount integerValue] > 0 &&
-        [self.analyzerWarningCount integerValue] > 0) {
-        [[apstring
-            plainText:@"All %@ tests passed, but please ", self.testsCount]
-            boldText:@"fix %@ analyzer warnings.", self.analyzerWarningCount];
-        if ([self.codeCoveragePercentage doubleValue] > 0) {
-            [[apstring
-                italicText:@"\nTest Coverage"]
-                plainText:@": %@%%", self.codeCoveragePercentage];
-        }
-        return apstring;
-    }
+       if ([self.testsCount integerValue] > 0 &&
+           [self.analyzerWarningCount integerValue] > 0) {
+           [[apstring
+               plainText:@"All %@ tests passed, but please ", self.testsCount]
+               boldText:@"fix %@ analyzer warnings.", self.analyzerWarningCount];
+           if ([self.codeCoveragePercentage doubleValue] > 0) {
+               [[apstring
+                   italicText:@"\nTest Coverage"]
+                   plainText:@": %@%%", self.codeCoveragePercentage];
+           }
+           return apstring;
+       }
 
-    if ([self.errorCount integerValue] == 0 && [self.result isEqualToString:@"succeeded"]) {
-        if (self.testsCount.integerValue == 0) {
-            [apstring boldText:@"Perfect build! 👍"];
-        } else {
-            if (self.testFailureCount.integerValue == 0) {
-                [apstring boldText:@"Perfect build!"];
-                [apstring plainText:@" All %ld tests passed. 👍\n", (long) self.testsCount.integerValue];
-                if (self.codeCoveragePercentage.doubleValue > 0.0) {
-                    [[apstring
-                        italicText:@"Test Coverage"]
-                        plainText:@": %@%%", self.codeCoveragePercentage];
-                }
-            } else {
-                [apstring boldText:@"Perfect build!"];
-                [apstring plainText:@" But please fix %ld failing tests.\n", (long) self.testFailureCount.integerValue];
-                [[apstring
-                    italicText:@"Test Coverage"]
-                    plainText:@": %@%% (%@ tests).", self.codeCoveragePercentage, self.testsCount];
-            }
-        }
-        return apstring;
-    }
+       if ([self.errorCount integerValue] == 0 && [self.result isEqualToString:@"succeeded"]) {
+           if (self.testsCount.integerValue == 0) {
+               [apstring boldText:@"Perfect build! 👍"];
+           } else {
+               if (self.testFailureCount.integerValue == 0) {
+                   [apstring boldText:@"Perfect build!"];
+                   [apstring plainText:@" All %ld tests passed. 👍\n", (long) self.testsCount.integerValue];
+                   if (self.codeCoveragePercentage.doubleValue > 0.0) {
+                       [[apstring
+                           italicText:@"Test Coverage"]
+                           plainText:@": %@%%", self.codeCoveragePercentage];
+                   }
+               } else {
+                   [apstring boldText:@"Perfect build!"];
+                   [apstring plainText:@" But please fix %ld failing tests.\n", (long) self.testFailureCount.integerValue];
+                   [[apstring
+                       italicText:@"Test Coverage"]
+                       plainText:@": %@%% (%@ tests).", self.codeCoveragePercentage, self.testsCount];
+               }
+           }
+           return apstring;
+       }
 
-    [apstring boldText:@"Failing state: %@.", self.summaryString];
-    if ([self.tags containsObject:@"xcs-upgrade"]) {
-        [apstring italicText:@"\nThe current configuration may not be supported by the Xcode upgrade."];
-    }
+       [apstring boldText:@"Failing state: %@.", self.summaryString];
+       if ([self.tags containsObject:@"xcs-upgrade"]) {
+           [apstring italicText:@"\nThe current configuration may not be supported by the Xcode upgrade."];
+       }
 
-    return apstring;
+       return apstring;
 }
 
 - (NSURL*) integrationLogURL {

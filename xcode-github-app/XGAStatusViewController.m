@@ -433,6 +433,9 @@
         options.xcodeServerPassword = server.password;
         options.templateBotName = syncTask.botNameForTemplate;
         options.githubAuthToken = XGASettings.shared.gitHubToken;
+        options.successMessage = XGASettings.shared.successfulBuildMessage;
+        options.perfectMessage = XGASettings.shared.perfectBuildMessage;
+        options.failureMessage = XGASettings.shared.failedBuildMessage;
         options.dryRun = XGASettings.shared.dryRun;
         error = XGUpdateXcodeBotsWithGitHub(options);
         if (error) {
