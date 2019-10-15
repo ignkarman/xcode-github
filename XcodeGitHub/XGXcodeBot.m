@@ -157,9 +157,9 @@ _Test Coverage_: 65% (193 tests).
 
        if ([self.errorCount integerValue] > 0) {
            [[[apstring
-              plainText:@"%@", failureMessage]
-             line]
-             boldText:@"%@ errors, failing state: %@", self.errorCount, self.summaryString];
+             boldText:@"%@ errors, failing state: %@", self.errorCount, self.summaryString]
+             plainText:@"%@", failureMessage]
+            line];
            return apstring;
        }
 
@@ -171,8 +171,6 @@ _Test Coverage_: 65% (193 tests).
                plainText:@" out of %@", self.testsCount];
            return apstring;
        }
-    
-       [[apstring plainText:@"%@", successMessage] line];
 
        if ([self.testsCount integerValue] > 0 &&
            [self.warningCount integerValue] > 0 &&
@@ -188,6 +186,7 @@ _Test Coverage_: 65% (193 tests).
                    italicText:@"\nTest Coverage"]
                    plainText:@": %@%%", self.codeCoveragePercentage];
            }
+           [[apstring plainText:@"%@", successMessage] line];
            return apstring;
        }
 
@@ -201,6 +200,7 @@ _Test Coverage_: 65% (193 tests).
                    italicText:@"\nTest Coverage"]
                    plainText:@": %@%%", self.codeCoveragePercentage];
            }
+           [[apstring plainText:@"%@", successMessage] line];
            return apstring;
        }
 
@@ -218,9 +218,8 @@ _Test Coverage_: 65% (193 tests).
        }
 
        if ([self.errorCount integerValue] == 0 && [self.result isEqualToString:@"succeeded"]) {
-           if (self.testsCount.integerValue == 0) {
-               [apstring boldText:@"%@", perfectMessage];
-           } else {
+//           if (self.testsCount.integerValue == 0) {
+//           } else {
                if (self.testFailureCount.integerValue == 0) {
                    [apstring boldText:@"Perfect build!"];
                    [apstring plainText:@" All %ld tests passed. 👍\n", (long) self.testsCount.integerValue];
@@ -236,7 +235,8 @@ _Test Coverage_: 65% (193 tests).
                        italicText:@"Test Coverage"]
                        plainText:@": %@%% (%@ tests).", self.codeCoveragePercentage, self.testsCount];
                }
-           }
+//           }
+           [apstring boldText:@"%@", perfectMessage];
            return apstring;
        }
 

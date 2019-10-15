@@ -80,7 +80,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, readonly) NSArray<NSString*>*_Nullable tags;
 
 @property (strong, readonly) NSString* summaryString;
-@property (strong, readonly) APFormattedString* formattedDetailString;
 
 @property (strong, readonly) NSURL* integrationLogURL;
 
