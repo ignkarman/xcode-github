@@ -158,7 +158,7 @@ _Test Coverage_: 65% (193 tests).
        if ([self.errorCount integerValue] > 0) {
            [[[apstring
              boldText:@"%@ errors, failing state: %@", self.errorCount, self.summaryString]
-             plainText:@"%@", failureMessage]
+             plainText:@"\n%@", failureMessage]
             line];
            return apstring;
        }
@@ -186,7 +186,7 @@ _Test Coverage_: 65% (193 tests).
                    italicText:@"\nTest Coverage"]
                    plainText:@": %@%%", self.codeCoveragePercentage];
            }
-           [[apstring plainText:@"%@", successMessage] line];
+           [[apstring plainText:@"\n%@", successMessage] line];
            return apstring;
        }
 
@@ -200,7 +200,7 @@ _Test Coverage_: 65% (193 tests).
                    italicText:@"\nTest Coverage"]
                    plainText:@": %@%%", self.codeCoveragePercentage];
            }
-           [[apstring plainText:@"%@", successMessage] line];
+           [[apstring plainText:@"\n%@", successMessage] line];
            return apstring;
        }
 
@@ -219,8 +219,8 @@ _Test Coverage_: 65% (193 tests).
     
        if ([self.testsCount integerValue] == 0) {
            [apstring boldText:@"Build Succeeded"];
-           [apstring plainText:@"No tests ran on this integration"];
-           [apstring plainText:@"%@", successMessage];
+           [apstring plainText:@"\nNo tests ran on this integration"];
+           [apstring plainText:@"\n%@", successMessage];
            return apstring;
        }
 
@@ -240,12 +240,12 @@ _Test Coverage_: 65% (193 tests).
                    italicText:@"Test Coverage"]
                    plainText:@": %@%% (%@ tests).", self.codeCoveragePercentage, self.testsCount];
            }
-           [apstring plainText:@"%@", perfectMessage];
+           [apstring plainText:@"\n%@", perfectMessage];
            return apstring;
        }
 
        [apstring boldText:@"Failing state: %@.", self.summaryString];
-       [apstring plainText:@"%@", failureMessage];
+       [apstring plainText:@"\n%@", failureMessage];
        if ([self.tags containsObject:@"xcs-upgrade"]) {
            [apstring italicText:@"\nThe current configuration may not be supported by the Xcode upgrade."];
        }
