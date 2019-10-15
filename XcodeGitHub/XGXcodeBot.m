@@ -216,6 +216,13 @@ _Test Coverage_: 65% (193 tests).
            }
            return apstring;
        }
+    
+       if ([self.testsCount integerValue] == 0) {
+           [apstring boldText:@"Build Succeeded"];
+           [apstring plainText:@"No tests ran on this integration"];
+           [apstring plainText:@"%@", successMessage];
+           return apstring;
+       }
 
        if ([self.errorCount integerValue] == 0 && [self.result isEqualToString:@"succeeded"]) {
            if (self.testFailureCount.integerValue == 0) {
@@ -238,6 +245,7 @@ _Test Coverage_: 65% (193 tests).
        }
 
        [apstring boldText:@"Failing state: %@.", self.summaryString];
+       [apstring plainText:@"%@", failureMessage];
        if ([self.tags containsObject:@"xcs-upgrade"]) {
            [apstring italicText:@"\nThe current configuration may not be supported by the Xcode upgrade."];
        }
