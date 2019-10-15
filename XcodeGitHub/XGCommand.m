@@ -153,10 +153,12 @@ NSError*_Nullable XGUpdatePRStatusOnGitHub(
         message:message
         statusURL:nil];
     if (error) return error;
+    
+    
 
     // Add a completion message to the PR:
     if ([botStatus.currentStep isEqualToString:@"completed"]) {
-        error = [pr addComment:[botStatus.formattedDetailString renderMarkDown]];
+        error = [pr addComment:[[botStatus formatDetailString:options.successMessage :options.failureMessage :options.perfectMessage] renderMarkDown]];
         if (error) return error;
     }
 

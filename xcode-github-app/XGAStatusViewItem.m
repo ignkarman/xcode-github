@@ -25,7 +25,7 @@
     status.botName = botStatus.botName;
 
     status.statusSummary = [APFormattedString boldText:@"%@", botStatus.summaryString];
-    status.statusDetail = botStatus.formattedDetailString;
+    status.statusDetail = [botStatus formatDetailString:XGASettings.shared.successfulBuildMessage :XGASettings.shared.failedBuildMessage :XGASettings.shared.perfectBuildMessage];
 
     status.repository = [NSString stringWithFormat:@"%@/%@", bot.repoOwner, bot.repoName];
 

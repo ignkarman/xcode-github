@@ -80,9 +80,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, readonly) NSArray<NSString*>*_Nullable tags;
 
 @property (strong, readonly) NSString* summaryString;
-@property (strong, readonly) APFormattedString* formattedDetailString;
 
 @property (strong, readonly) NSURL* integrationLogURL;
+
+- (APFormattedString*) formatDetailString:(NSString*_Nullable) successMessage : (NSString*_Nullable) failureMessage : (NSString*_Nullable) perfectMessage;
 
 - (instancetype) initWithServerName:(NSString*_Nullable)serverName
                          dictionary:(NSDictionary*_Nullable)dictionary
