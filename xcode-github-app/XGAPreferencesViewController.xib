@@ -8,13 +8,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="XGAPreferencesViewController">
             <connections>
-                <outlet property="failedBuildMessageTextField" destination="Jf2-db-SS5" id="SIj-yK-IlX"/>
                 <outlet property="gitHubTokenTextField" destination="drg-zm-rHi" id="JRg-vq-3cK"/>
-                <outlet property="perfectBuildMessageTextField" destination="bLX-Rs-0VW" id="LLQ-ZF-mBo"/>
                 <outlet property="refreshTimeFormatter" destination="x9S-89-6UL" id="tGE-0E-OKe"/>
                 <outlet property="removeButton" destination="2m4-7m-gCy" id="Tfc-Sk-i1x"/>
                 <outlet property="serverDictionaryController" destination="oga-iZ-0jS" id="DTY-0p-vjh"/>
-                <outlet property="successfulBuildMessageTextField" destination="HYZ-xC-hU7" id="lvB-Lb-Fjv"/>
                 <outlet property="tableView" destination="Llm-sj-s68" id="5Zj-XT-sMN"/>
                 <outlet property="view" destination="9lr-Zd-a11" id="lAU-Ji-RFa"/>
                 <outlet property="window" destination="GJD-mm-6or" id="UWh-UO-wGD"/>
@@ -319,7 +316,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ggk-5U-XV4" userLabel="Failure Message View">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ggk-5U-XV4" userLabel="Failure Message View">
                                 <rect key="frame" x="0.0" y="128" width="424" height="40"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b1D-ZI-lBO">
@@ -354,7 +351,7 @@
                                     <constraint firstItem="b1D-ZI-lBO" firstAttribute="leading" secondItem="ggk-5U-XV4" secondAttribute="leading" constant="12" id="t8I-Zz-UqA"/>
                                 </constraints>
                             </customView>
-                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uos-3z-xN3" userLabel="Success Message View">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="uos-3z-xN3" userLabel="Success Message View">
                                 <rect key="frame" x="0.0" y="80" width="424" height="40"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Adv-qO-p8B">
@@ -391,7 +388,7 @@
                                     <constraint firstItem="Adv-qO-p8B" firstAttribute="centerY" secondItem="uos-3z-xN3" secondAttribute="centerY" id="s6e-sG-lGV"/>
                                 </constraints>
                             </customView>
-                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="44n-Kn-XmT" userLabel="Perfect Message View">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="44n-Kn-XmT" userLabel="Perfect Message View">
                                 <rect key="frame" x="0.0" y="32" width="425" height="40"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZnV-15-d8f">
@@ -446,6 +443,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="44n-Kn-XmT" firstAttribute="width" secondItem="51C-Bm-1cv" secondAttribute="width" id="4LR-t8-kEK"/>
+                            <constraint firstItem="uos-3z-xN3" firstAttribute="centerY" secondItem="51C-Bm-1cv" secondAttribute="centerY" id="OVh-et-OXd"/>
                             <constraint firstItem="uos-3z-xN3" firstAttribute="top" secondItem="ggk-5U-XV4" secondAttribute="bottom" constant="8" symbolic="YES" id="deW-XE-ZZG"/>
                             <constraint firstAttribute="height" constant="200" id="yoV-J2-M4k"/>
                         </constraints>
