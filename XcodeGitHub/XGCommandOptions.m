@@ -57,9 +57,9 @@
         case 'v':   self.verbosity++; break;
         case 'V':   self.showVersion = YES; break;
         case 'x':   self.xcodeServerName = [self.class stringFromParameter]; break;
-        case 'S':   self.successfulBuildMessage = [self.class stringFromParameter]; break;
-        case 'F':   self.failedBuildMessage = [self.class stringFromParameter]; break;
-        case 'P':   self.perfectBuildMessage = [self.class stringFromParameter]; break;
+        case 'S':   self.successMessage = [self.class stringFromParameter]; break;
+        case 'F':   self.failureMessage = [self.class stringFromParameter]; break;
+        case 'P':   self.perfectMessage = [self.class stringFromParameter]; break;
         default:    self.badOptionsError = YES; break;
         }
     } while (c != -1 && !self.badOptionsError);
