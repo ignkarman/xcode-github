@@ -156,15 +156,23 @@ _Test Coverage_: 65% (193 tests).
            plainText:@": "];
 
        if ([self.errorCount integerValue] > 0) {
-           [apstring boldText:@"%@ errors, failing state: %@", self.errorCount, self.summaryString];
+           [[[apstring
+              plainText:@"%@", failureMessage]
+             line]
+             boldText:@"%@ errors, failing state: %@", self.errorCount, self.summaryString];
            return apstring;
        }
 
        if ([self.testFailureCount integerValue] > 0) {
-           [[apstring boldText:@"Build failed %@ tests", self.testFailureCount]
+           [[[[apstring
+             plainText:@"%@", failureMessage]
+                 line]
+             boldText:@"Build failed %@ tests", self.testFailureCount]
                plainText:@" out of %@", self.testsCount];
            return apstring;
        }
+    
+       [[apstring plainText:@"%@", successMessage] line];
 
        if ([self.testsCount integerValue] > 0 &&
            [self.warningCount integerValue] > 0 &&
@@ -211,7 +219,7 @@ _Test Coverage_: 65% (193 tests).
 
        if ([self.errorCount integerValue] == 0 && [self.result isEqualToString:@"succeeded"]) {
            if (self.testsCount.integerValue == 0) {
-               [apstring boldText:@"Perfect build! 👍"];
+               [apstring boldText:@"%@", perfectMessage];
            } else {
                if (self.testFailureCount.integerValue == 0) {
                    [apstring boldText:@"Perfect build!"];
