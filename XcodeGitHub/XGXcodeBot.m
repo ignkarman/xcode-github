@@ -218,25 +218,22 @@ _Test Coverage_: 65% (193 tests).
        }
 
        if ([self.errorCount integerValue] == 0 && [self.result isEqualToString:@"succeeded"]) {
-//           if (self.testsCount.integerValue == 0) {
-//           } else {
-               if (self.testFailureCount.integerValue == 0) {
-                   [apstring boldText:@"Perfect build!"];
-                   [apstring plainText:@" All %ld tests passed. 👍\n", (long) self.testsCount.integerValue];
-                   if (self.codeCoveragePercentage.doubleValue > 0.0) {
-                       [[apstring
-                           italicText:@"Test Coverage"]
-                           plainText:@": %@%%", self.codeCoveragePercentage];
-                   }
-               } else {
-                   [apstring boldText:@"Perfect build!"];
-                   [apstring plainText:@" But please fix %ld failing tests.\n", (long) self.testFailureCount.integerValue];
+           if (self.testFailureCount.integerValue == 0) {
+               [apstring boldText:@"Perfect build!"];
+               [apstring plainText:@" All %ld tests passed. 👍\n", (long) self.testsCount.integerValue];
+               if (self.codeCoveragePercentage.doubleValue > 0.0) {
                    [[apstring
                        italicText:@"Test Coverage"]
-                       plainText:@": %@%% (%@ tests).", self.codeCoveragePercentage, self.testsCount];
+                       plainText:@": %@%%", self.codeCoveragePercentage];
                }
-//           }
-           [apstring boldText:@"%@", perfectMessage];
+           } else {
+               [apstring boldText:@"Perfect build!"];
+               [apstring plainText:@" But please fix %ld failing tests.\n", (long) self.testFailureCount.integerValue];
+               [[apstring
+                   italicText:@"Test Coverage"]
+                   plainText:@": %@%% (%@ tests).", self.codeCoveragePercentage, self.testsCount];
+           }
+           [apstring plainText:@"%@", perfectMessage];
            return apstring;
        }
 
