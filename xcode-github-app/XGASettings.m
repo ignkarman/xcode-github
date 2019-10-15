@@ -140,7 +140,7 @@ NSString*_Nonnull XGACleanString(NSString*_Nullable string) {
         NSError*error = nil;
         NSString*message =
             [BNCKeyChain retrieveValueForService:kXGAServiceName
-                key:@"FailedBuiledMessage"
+                key:@"FailedBuildMessage"
                 error:&error];
         if (error) BNCLog(@"Can't retrieve Failed Build Message: %@.", error);
         return message;
@@ -152,9 +152,9 @@ NSString*_Nonnull XGACleanString(NSString*_Nullable string) {
         NSError *error =
             [BNCKeyChain storeValue:message
                 forService:kXGAServiceName
-                key:@"FailedBuiledMessage"
+                key:@"FailedBuildMessage"
                 cloudAccessGroup:nil];
-        if (error) BNCLog(@"Can't retrieve Failed Builed Message: %@.", error);
+        if (error) BNCLog(@"Can't retrieve Failed Build Message: %@.", error);
     }
 }
 
@@ -163,7 +163,7 @@ NSString*_Nonnull XGACleanString(NSString*_Nullable string) {
         NSError*error = nil;
         NSString*message =
             [BNCKeyChain retrieveValueForService:kXGAServiceName
-                key:@"SuccessfulBuiledMessage"
+                key:@"SuccessfulBuildMessage"
                 error:&error];
         if (error) BNCLog(@"Can't retrieve successful Build Message: %@.", error);
         return message;
@@ -175,9 +175,9 @@ NSString*_Nonnull XGACleanString(NSString*_Nullable string) {
         NSError *error =
             [BNCKeyChain storeValue:message
                 forService:kXGAServiceName
-                key:@"SuccessfulBuiledMessage"
+                key:@"SuccessfulBuildMessage"
                 cloudAccessGroup:nil];
-        if (error) BNCLog(@"Can't retrieve successful Builed Message: %@.", error);
+        if (error) BNCLog(@"Can't retrieve successful Build Message: %@.", error);
     }
 }
 
@@ -186,7 +186,7 @@ NSString*_Nonnull XGACleanString(NSString*_Nullable string) {
         NSError*error = nil;
         NSString*message =
             [BNCKeyChain retrieveValueForService:kXGAServiceName
-                key:@"PerfectBuiledMessage"
+                key:@"PerfectBuildMessage"
                 error:&error];
         if (error) BNCLog(@"Can't retrieve Perfect Build Message: %@.", error);
         return message;
@@ -198,9 +198,9 @@ NSString*_Nonnull XGACleanString(NSString*_Nullable string) {
         NSError *error =
             [BNCKeyChain storeValue:message
                 forService:kXGAServiceName
-                key:@"PerfectBuiledMessage"
+                key:@"PerfectBuildMessage"
                 cloudAccessGroup:nil];
-        if (error) BNCLog(@"Can't retrieve Perfect Builed Message: %@.", error);
+        if (error) BNCLog(@"Can't retrieve Perfect Build Message: %@.", error);
     }
 }
 
