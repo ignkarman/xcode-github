@@ -21,6 +21,9 @@
 @property (strong) IBOutlet NSTableView *tableView;
 @property (strong) IBOutlet NSNumberFormatter *refreshTimeFormatter;
 @property (strong) XGAAddServerPanel *addServerPanel;
+@property (strong) IBOutlet NSTextField *perfectBuildMessageTextField;
+@property (strong) IBOutlet NSTextField *failedBuildMessageTextField;
+@property (strong) IBOutlet NSTextField *successfulBuildMessageTextField;
 @end
 
 @implementation XGAPreferencesViewController

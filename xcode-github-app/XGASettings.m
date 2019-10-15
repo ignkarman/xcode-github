@@ -135,6 +135,75 @@ NSString*_Nonnull XGACleanString(NSString*_Nullable string) {
     }
 }
 
+- (NSString*) failedBuildMessage {
+    @synchronized (self) {
+        NSError*error = nil;
+        NSString*message =
+            [BNCKeyChain retrieveValueForService:kXGAServiceName
+                key:@"FailedBuiledMessage"
+                error:&error];
+        if (error) BNCLog(@"Can't retrieve Failed Build Message: %@.", error);
+        return message;
+    }
+}
+
+- (void) setFailedBuildMessage:(NSString *)message {
+    @synchronized (self) {
+        NSError *error =
+            [BNCKeyChain storeValue:message
+                forService:kXGAServiceName
+                key:@"FailedBuiledMessage"
+                cloudAccessGroup:nil];
+        if (error) BNCLog(@"Can't retrieve Failed Builed Message: %@.", error);
+    }
+}
+
+- (NSString*) successfulBuildMessage {
+    @synchronized (self) {
+        NSError*error = nil;
+        NSString*message =
+            [BNCKeyChain retrieveValueForService:kXGAServiceName
+                key:@"SuccessfulBuiledMessage"
+                error:&error];
+        if (error) BNCLog(@"Can't retrieve successful Build Message: %@.", error);
+        return message;
+    }
+}
+
+- (void) setSuccessfulBuildMessage:(NSString *)message {
+    @synchronized (self) {
+        NSError *error =
+            [BNCKeyChain storeValue:message
+                forService:kXGAServiceName
+                key:@"SuccessfulBuiledMessage"
+                cloudAccessGroup:nil];
+        if (error) BNCLog(@"Can't retrieve successful Builed Message: %@.", error);
+    }
+}
+
+- (NSString*) perfectBuildMessage {
+    @synchronized (self) {
+        NSError*error = nil;
+        NSString*message =
+            [BNCKeyChain retrieveValueForService:kXGAServiceName
+                key:@"PerfectBuiledMessage"
+                error:&error];
+        if (error) BNCLog(@"Can't retrieve Perfect Build Message: %@.", error);
+        return message;
+    }
+}
+
+- (void) setPerfectBuildMessage:(NSString *)message {
+    @synchronized (self) {
+        NSError *error =
+            [BNCKeyChain storeValue:message
+                forService:kXGAServiceName
+                key:@"PerfectBuiledMessage"
+                cloudAccessGroup:nil];
+        if (error) BNCLog(@"Can't retrieve Perfect Builed Message: %@.", error);
+    }
+}
+
 - (NSMutableDictionary<NSString*, XGAServer*>*) servers {
     @synchronized (self) {
         if (_servers == nil) _servers = [NSMutableDictionary new];

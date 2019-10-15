@@ -133,6 +133,7 @@ _Test Coverage_: 65% (193 tests).
 */
 
 - (APFormattedString*) formattedDetailString {
+    
     NSTimeInterval duration = [self.endedDate timeIntervalSinceDate:self.startedDate];
     NSString*durationString = XGDurationStringFromTimeInterval(duration);
 

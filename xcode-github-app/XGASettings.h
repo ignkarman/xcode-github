@@ -37,6 +37,9 @@ FOUNDATION_EXPORT NSString*_Nonnull XGACleanString(NSString*_Nullable string);
 @property (assign) BOOL showDebugMessages;
 @property (assign) NSTimeInterval refreshSeconds;
 @property (copy)   NSString*gitHubToken;
+@property (copy)   NSString*failedBuildMessage;
+@property (copy)   NSString*perfectBuildMessage;
+@property (copy)   NSString*successfulBuildMessage;
 @property (strong, null_resettable) NSMutableDictionary<NSString*, XGAServer*>*servers;
 @property (strong, null_resettable) NSMutableArray<XGAGitHubSyncTask*>*gitHubSyncTasks;
 @end

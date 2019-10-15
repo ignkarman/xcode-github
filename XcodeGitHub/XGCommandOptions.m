@@ -29,6 +29,9 @@
         {"verbose",     no_argument,        NULL, 'v'},
         {"version",     no_argument,        NULL, 'V'},
         {"xcodeserver", required_argument,  NULL, 'x'},
+        {"successmessage",    no_argument,  NULL, 'S'},
+        {"failuremessage",    no_argument,  NULL, 'F'},
+        {"perfectmessage",    no_argument,  NULL, 'P'},
         {0, 0, 0, 0}
     };
 
@@ -54,6 +57,9 @@
         case 'v':   self.verbosity++; break;
         case 'V':   self.showVersion = YES; break;
         case 'x':   self.xcodeServerName = [self.class stringFromParameter]; break;
+        case 'S':   self.successfulBuildMessage = [self.class stringFromParameter]; break;
+        case 'F':   self.failedBuildMessage = [self.class stringFromParameter]; break;
+        case 'P':   self.perfectBuildMessage = [self.class stringFromParameter]; break;
         default:    self.badOptionsError = YES; break;
         }
     } while (c != -1 && !self.badOptionsError);
@@ -107,6 +113,14 @@
          "\n"
          "  -x, --xcodeserver <xcode-server-domain-name>\n"
          "      The network name of the xcode server.\n"
+         "  -S, --successmessage <custom-message>\n"
+         "      Optional custom integration success message.\n"
+         "\n"
+         "  -F, --failuremessage <custom-message>\n"
+         "      Optional custom integration failure message.\n"
+         "\n"
+         "  -P, --perfectmessage <custom-message>\n"
+         "      Optional custom perfect integration message.\n"
          "\n"
          "The tool returns 0 on success, otherwise a non-zero value.\n"
          "\n"
